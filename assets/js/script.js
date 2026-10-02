@@ -493,11 +493,17 @@ function renderProducts(filter = 'all') {
   const target = document.querySelector('[data-products-grid]');
   const empty  = document.querySelector('[data-products-empty]');
   if (!target) return;
-  const filtered = filter === 'all'
-    ? products
-    : products.filter(p => p.category === filter || p.accent === filter);
-  target.innerHTML = filtered.map(productCard).join('');
-  if (empty) empty.style.display = filtered.length ? 'none' : 'block';
+  const cards = [...target.querySelectorAll('.product-card')];
+  let visibleCount = 0;
+
+  cards.forEach(card => {
+    const categories = (card.dataset.categories || '').split(',');
+    const isVisible = filter === 'all' || categories.includes(filter);
+    card.style.display = isVisible ? '' : 'none';
+    if (isVisible) visibleCount += 1;
+  });
+
+  if (empty) empty.style.display = visibleCount ? 'none' : 'block';
   observeReveal();
 }
 
