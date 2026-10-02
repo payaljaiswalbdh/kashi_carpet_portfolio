@@ -1,6 +1,7 @@
 # Kashi Carpets Website
 
 A responsive, static website for Kashi Carpets, a handcrafted rug business based in Bhadohi, Uttar Pradesh.
+https://kashicarpetportfolio-brown.vercel.app/
 
 ## Pages
 
